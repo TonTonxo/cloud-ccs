@@ -42,13 +42,19 @@ contract cloud {
      
    }
    
-   function shareMyfile(address _add, string memory _hash,string memory _mimetype, string memory _name) public
+   function shareMyfile(address _add, string memory _hash, string memory _mimetype, string memory _name) public
    { 
         file memory t;
         t.hash = _hash;
+        uint256 index = 0;
+        for(uint256 i = 0; i < files_per_user[msg.sender].length; i++){
+          if(keccak256(abi.encodePacked(files_per_user[msg.sender][i].name)) ==  keccak256(abi.encodePacked(t.name))){
+               index = i;
+          }
+        }
+        delete(files_per_user[msg.sender][index]);
         t.mimetype = _mimetype;
         t.name = _name;
-        files_per_user[_add].push(t);
-       
+        files_per_user[_add].push(t); 
    }
 }
