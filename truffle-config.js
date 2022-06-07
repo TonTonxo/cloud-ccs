@@ -6,6 +6,10 @@ module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
   contracts_build_directory: path.join(__dirname, "client/src/contracts"),
+  plugins: ["truffle-plugin-verify"],
+  api_keys: {
+    bscscan: "X36V3R4SS9RDZIZ2Q715DP45Z2SPS3EEWJ",
+  },
   networks: {
     develop: {
       port: 9545,
