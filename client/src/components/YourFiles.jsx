@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "antd";
 import { message } from "antd";
-import { Table, Tag, Space, Input } from "antd";
-import { Typography, List } from "antd";
+import { Table, Input } from "antd";
+import { Typography } from "antd";
 import { Modal } from "antd";
 import Dropzone from "./Dropzone";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
@@ -11,15 +11,9 @@ import CryptoJS from "../crypto-js";
 import { Progress } from "antd";
 import { Divider } from "antd";
 
-const { Paragraph } = Typography;
-const { Title, Text } = Typography;
+const {} = Typography;
+const { Text } = Typography;
 
-const data = [
-  {
-    key: "1",
-    FileName: "Mike",
-  },
-];
 class YourFiles extends React.Component {
   constructor(props) {
     super(props);
@@ -307,7 +301,6 @@ class YourFiles extends React.Component {
         this.setState({ percent: this.state.percent + 5 });
         // Do whatever you want with the file contents
         console.log(reader);
-        const binaryStr = reader.result;
         console.log(file.name);
         console.log(file.type);
 
@@ -342,7 +335,7 @@ class YourFiles extends React.Component {
                 this.setState({ feedback: "Done" });
                 this.setState({ percent: this.state.percent + 20 });
                 console.log(receipt);
-                if (i + 1 == this.state.acceptedFiles.length) {
+                if (i + 1 === this.state.acceptedFiles.length) {
                   this.setState({
                     visiblep: false,
                     confirmLoadingp: false,

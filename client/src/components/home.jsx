@@ -48,7 +48,7 @@ class Home extends React.Component {
     window.ethereum.on("accountsChanged", (acc) => {
       this.setState({ accounts: acc });
 
-      if (this.props.data.contract != null) {
+      if (this.props.data.contract !== null) {
         this.call();
       }
     });
@@ -61,7 +61,7 @@ class Home extends React.Component {
   handleChangeMenu = (key) => {
     this.handleToggleDrawer(false);
     this.setState({ selectedMenuItem: key });
-    if (key == "0") this.setState({ positionofpage: "" });
+    if (key === "0") this.setState({ positionofpage: "" });
   };
   openpage = () => {
     this.setState({
@@ -82,7 +82,7 @@ class Home extends React.Component {
             onClick={() => this.handleToggleDrawer(true)}
           />
           <div>
-            {this.state.positionofpage != "" ? (
+            {this.state.positionofpage !== "" ? (
               this.state.positionofpage
             ) : (
               <img src={Logo} style={{ height: "50px", width: "auto" }} />
@@ -96,7 +96,7 @@ class Home extends React.Component {
           >
             {this.state.selectedMenuItem !== "0"
               ? AppMenuMapper.map((obj) => {
-                  if (parseInt(obj.key) < 5 && parseInt(obj.key) != 1)
+                  if (parseInt(obj.key) < 5 && parseInt(obj.key) !== 1)
                     return (
                       <Menu.Item
                         onClick={() => this.handleChangeMenu(obj.key)}
@@ -105,7 +105,7 @@ class Home extends React.Component {
                         {obj.value}
                       </Menu.Item>
                     );
-                  else if (parseInt(obj.key) == 1 && !this.state.isNoAuth)
+                  else if (parseInt(obj.key) === 1 && !this.state.isNoAuth)
                     return (
                       <Menu.Item
                         onClick={() => this.handleChangeMenu(obj.key)}
@@ -125,29 +125,13 @@ class Home extends React.Component {
           onClose={() => this.handleToggleDrawer(false)}
           visible={this.state.drawerVisible}
         >
-          {/* <Menu
-                        style={{ width: 256 }}
-                        selectedKeys={[this.state.selectedMenuItem]}
-                        mode="inline"
-                        theme="light">
-                        {this.state.selectedMenuItem !== '0' ? AppMenuMapper.map((obj) => {
-                            if (parseInt(obj.key) < 5)
-                                return <Menu.Item onClick={() => this.handleChangeMenu(obj.key)} key={obj.key} icon={obj.icon}>
-                                    {obj.value}
-                                </Menu.Item>
-                            else if (parseInt(obj.key) == 1 && !this.state.isNoAuth)
-                                return <Menu.Item onClick={() => this.handleChangeMenu(obj.key)} key={obj.key}>{obj.value}</Menu.Item>
-
-                        }) : LandingMenuMapper.map((obj) => {
-                            return <Menu.Item key={obj.key}><a target='_blank' href={obj.link}>{obj.value}</a></Menu.Item>
-                        })}
-                    </Menu> */}
+          {}
         </Drawer>
-        {this.state.selectedMenuItem == "0" ? (
+        {this.state.selectedMenuItem === "0" ? (
           <Landing open={this.openpage} />
-        ) : this.state.selectedMenuItem == "1" ? (
+        ) : this.state.selectedMenuItem === "1" ? (
           <YourFiles data={this.props.data} />
-        ) : this.state.selectedMenuItem == "2" ? (
+        ) : this.state.selectedMenuItem === "2" ? (
           <ChatTab data={this.props.data} />
         ) : (
           <div></div>

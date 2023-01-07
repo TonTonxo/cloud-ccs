@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./ChatBox.css";
 import { withWebRTC } from "react-liowebrtc";
-import { List, Typography, Divider } from "antd";
+import { Typography } from "antd";
 import { Row, Col } from "antd";
 import { Input } from "antd";
 import { Button } from "antd";
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 class ChatBox extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class ChatBox extends Component {
   KeyGen(choice) {
     console.log("ad");
     let p1, p2, n;
-    if (choice == 1) {
+    if (choice === 1) {
       p1 = this.state.p;
       p2 = this.state.q;
       n = this.state.prn;
@@ -54,7 +54,7 @@ class ChatBox extends Component {
       grow *= n;
     }
 
-    if (choice == 1) {
+    if (choice === 1) {
       this.setState({ output1: total });
     } else {
       this.setState({ output2: total });
@@ -96,89 +96,89 @@ class ChatBox extends Component {
 
   render() {
     const { chatLog } = this.props;
-    const data = [
-      "Suppose you want to exchange key with Bob for file F. Headover to given p2p chat widget, or use any channel, security of channel does not matter.",
-      <div>
-        From mutual agreement choose two numbers <Text code>P</Text> and{" "}
-        <Text code>Q</Text>, this numbers are not secret.
-        <div className="inputIns">
-          <Input placeholder="Enter P" name="p" onChange={this.handleChange} />{" "}
-          <Input placeholder="Enter Q" name="q" onChange={this.handleChange} />
-        </div>
-      </div>,
-      <div>
-        Now Choose any <Text code>Prime number</Text>, this is your secret.
-        <span className="inputIns">
-          <Input
-            placeholder="Enter Prime number"
-            className="inputIns"
-            name="prn"
-            onChange={this.handleChange}
-          />
-        </span>
-      </div>,
-      <div>
-        We are going to calculate output of equation P,Q and Prime no in{" "}
-        <Text code>
-          P<sup>Prime no</sup> mod Q
-        </Text>
-        .
-        <div>
-          <Button
-            type="primary"
-            className="insBut"
-            onClick={() => {
-              this.KeyGen(1);
-            }}
-          >
-            Calculate
-          </Button>{" "}
-          <Text strong className="insOutput">
-            {this.state.output1}
-          </Text>
-        </div>
-      </div>,
-      "Exhange output of previous step with Bob",
-      <div>
-        {" "}
-        Suppose You got output <Text code>N</Text> from Bob.
-        <div className="inputIns">
-          <Input
-            placeholder="Enter N"
-            className="inputIns"
-            name="n"
-            onChange={this.handleChange}
-          />
-        </div>
-      </div>,
-      <div>
-        Now we are going to calculate the key for the file using'{" "}
-        <Text code>
-          N<sup>Prime no</sup> mod Q
-        </Text>
-      </div>,
-      <div>
-        <Button
-          type="primary"
-          onClick={() => {
-            this.KeyGen(2);
-          }}
-        >
-          Calculate
-        </Button>{" "}
-        <Text strong className="insOutput">
-          {this.state.output2}
-        </Text>
-      </div>,
+    // const data = [
+    //   "Suppose you want to exchange key with Bob for file F. Headover to given p2p chat widget, or use any channel, security of channel does not matter.",
+    //   <div>
+    //     From mutual agreement choose two numbers <Text code>P</Text> and{" "}
+    //     <Text code>Q</Text>, this numbers are not secret.
+    //     <div className="inputIns">
+    //       <Input placeholder="Enter P" name="p" onChange={this.handleChange} />{" "}
+    //       <Input placeholder="Enter Q" name="q" onChange={this.handleChange} />
+    //     </div>
+    //   </div>,
+    //   <div>
+    //     Now Choose any <Text code>Prime number</Text>, this is your secret.
+    //     <span className="inputIns">
+    //       <Input
+    //         placeholder="Enter Prime number"
+    //         className="inputIns"
+    //         name="prn"
+    //         onChange={this.handleChange}
+    //       />
+    //     </span>
+    //   </div>,
+    //   <div>
+    //     We are going to calculate output of equation P,Q and Prime no in{" "}
+    //     <Text code>
+    //       P<sup>Prime no</sup> mod Q
+    //     </Text>
+    //     .
+    //     <div>
+    //       <Button
+    //         type="primary"
+    //         className="insBut"
+    //         onClick={() => {
+    //           this.KeyGen(1);
+    //         }}
+    //       >
+    //         Calculate
+    //       </Button>{" "}
+    //       <Text strong className="insOutput">
+    //         {this.state.output1}
+    //       </Text>
+    //     </div>
+    //   </div>,
+    //   "Exhange output of previous step with Bob",
+    //   <div>
+    //     {" "}
+    //     Suppose You got output <Text code>N</Text> from Bob.
+    //     <div className="inputIns">
+    //       <Input
+    //         placeholder="Enter N"
+    //         className="inputIns"
+    //         name="n"
+    //         onChange={this.handleChange}
+    //       />
+    //     </div>
+    //   </div>,
+    //   <div>
+    //     Now we are going to calculate the key for the file using'{" "}
+    //     <Text code>
+    //       N<sup>Prime no</sup> mod Q
+    //     </Text>
+    //   </div>,
+    //   <div>
+    //     <Button
+    //       type="primary"
+    //       onClick={() => {
+    //         this.KeyGen(2);
+    //       }}
+    //     >
+    //       Calculate
+    //     </Button>{" "}
+    //     <Text strong className="insOutput">
+    //       {this.state.output2}
+    //     </Text>
+    //   </div>,
 
-      "You and Bob will genrate same key,Now headover to Your Files, upload file F with this newly generated key and share it with Bob.",
+    //   "You and Bob will genrate same key,Now headover to Your Files, upload file F with this newly generated key and share it with Bob.",
 
-      // 'Choose p and q through chat : Equation p^x mod q',
-      // 'Choose any prime number and plug it in equation as x, this is your private key dont tell it to anyone',
-      // 'Pass down the output of step2 to Pooja ',
-      // 'Once you got the Poojas output of step2, plug it in equation (Poojas Output)^x mod q',
-      // 'Now you and Pooja will have same keys, confused ?',
-    ];
+    //   // 'Choose p and q through chat : Equation p^x mod q',
+    //   // 'Choose any prime number and plug it in equation as x, this is your private key dont tell it to anyone',
+    //   // 'Pass down the output of step2 to Pooja ',
+    //   // 'Once you got the Poojas output of step2, plug it in equation (Poojas Output)^x mod q',
+    //   // 'Now you and Pooja will have same keys, confused ?',
+    // ];
     return (
       <div className="main">
         <Row>
@@ -213,20 +213,7 @@ class ChatBox extends Component {
               </div>
             </div>
           </Col>
-          {/* <Col span={14}>
-                        <div className='instructions'>
-                            <Divider orientation="left"><Text className="deffi">Process of Deffi- Hellman Key exchange</Text></Divider>
-                            <List
-                                size="small"
-                                footer={<Text className="expla"><a href="https://codereview.stackexchange.com/questions/113860/diffie-hellman-in-javascript/114135" className="Expla" > Details of how this algorithm works </a></Text>}
-                                className="insList"
-                                bordered
-                                dataSource={data}
-                                renderItem={item => <List.Item>{item}</List.Item>}
-                            />
-
-                        </div>
-                    </Col> */}
+          {}
         </Row>
       </div>
     );
